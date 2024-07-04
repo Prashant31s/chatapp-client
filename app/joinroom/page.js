@@ -8,10 +8,14 @@ function page() {
     //     document.body.style("green");
     // },[])
   return (
-    
-    <div className='flex justify-center m-2 p-3'>
+    <div className='flex bg-accent h-[100vh] items-center justify-center '>
+
+    <div className='flex bg-background justify-center border-2 rounded-2xl'>
         <Joinroom/>
     </div>
+
+    </div>
+    
   )
 }
 

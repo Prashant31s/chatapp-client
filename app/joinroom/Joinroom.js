@@ -11,31 +11,39 @@ function Joinroom() {
 
   function joinRoom() {
     console.log(`Room ${roomName} joined`);
-    socket.emit("join-room", roomName);
-    router.push(`/Chatroom?user=${user}&room=${roomName}`);
+    if(roomName){
+      // socket.emit("join-room", roomName);
+      router.push(`/Chatroom?user=${user}&room=${roomName}`);
+    }
+    
+    
   }
+  // socket.on("history", (messageshistory) => {
+  //   console.log("hiiii");
+  //   // setMessages(messageshistory); // Update messages state with chat history
+  // });
 
   return (
     <>
-      <div>
-        <div className="flex justify-center items-center text-center border-2 border-black rounded-lg h-11">
+      <div className="  m-[5px] mt-2">
+        <div className="flex  justify-center items-center text-center border-2 border-black rounded-lg h-11">
           <h6 className="font-serif font-semibold rounded-lg text-pretty text-2xl ">
             {user}
           </h6>
         </div>
         <div className="flex flex-wrap items-center justify-center p-2 m-4 ">
           <h4 className="flex flex-wrap items-center justify-center">
-            join room
+            Join room
           </h4>
           <input
             className="p-2 m-2 text-black bg-gray-300 shadow-md rounded-xl w-1/8 "
             style={{ border: "1px solid black" }}
-            placeholder="room name"
+            placeholder="Room name"
             value={roomName}
             onChange={(e) => setRoomName(e.target.value)}
           />
           <button
-            className="p-2 m-2 font-semibold text-white bg-blue-600 w-28 hover:bg-blue-900 rounded-2xl "
+            className="p-2 m-2 font-semibold bg-heading text-text2 bg-joinbutton w-28 hover:bg-joinbutton2 border-b-[4px]  border-joinbutton2 rounded-2xl "
             onClick={() => joinRoom()}
           >
             join

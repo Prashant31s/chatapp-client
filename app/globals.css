@@ -49,34 +49,51 @@
 /* Message input form */
 .form {
   display: flex;
+  padding: 5px 5px 5px 5px;
+  box-sizing: border-box;
   /* //margin-top: 10px; */
-  margin-left: 2px;
-  margin-bottom: 3px;
+  /* margin-left: 2px;
+  margin-bottom: 3px; */
 }
 
 .input {
   flex: 1;
+  box-sizing: border-box;
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
+  margin-left: 5px;
+  margin-bottom: 6px;
+  margin-top: 8px; 
+  margin-right: 2px;
+  border: 2px solid;
+  border-radius: 25px;
+  
 }
 
 /* Send message button */
 .form button {
-  padding: 10px 20px;
+  padding: 10px 10px 10px 10px;
+  margin-left: 5px;
+  margin-bottom: 6px;
+  margin-top: 8px; 
+  margin-right:10px;
+  box-sizing: border-box;
   font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  background-color: #666;
-  color: #fff;
+  
+
+  border: 2px solid;
+  border-radius: 25px;
+  background-color:#db2777 ;
+  
+  color: #000;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
+
+
 .form button:hover {
-  background-color: #333;
+  background-color: #9d174d;
 }
 
 .word {

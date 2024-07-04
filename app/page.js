@@ -28,9 +28,10 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col justify-center h-screen p-3 m-2 mx-auto w-max">
+    <div className="flex flex-col items-center justify-center h-screen bg-accent">
+    <div className="flex flex-col justify-center items-center m-auto  border-2  bg-background">
         <input
-          className="flex p-2 m-2"
+          className="flex p-2 m-2 mb-0"
           placeholder="username"
           value={userName}
           onChange={(e) => setUsername(e.target.value)}
@@ -38,12 +39,14 @@ export default function Home() {
         {!takenName ? "" : <span className="p-2 text-wrap">{takenName}</span>}
 
         <button
-          className="p-3 m-2 bg-green-500 hover:bg-green-800 w-44 border-l-green-700 rounded-2xl"
+          className="p-4 m-3 bg-joinbutton hover:bg-joinbutton2  border-b-4 border-joinbutton2 border-l-green-700 rounded-[25px]"
           onClick={() => userjoin()}
         >
           room chat
         </button>
       </div>
+    </div>
+      
     </>
   );
 }
