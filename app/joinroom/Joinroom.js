@@ -8,21 +8,12 @@ function Joinroom() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const user = searchParams.get("username");
-
   function joinRoom() {
     console.log(`Room ${roomName} joined`);
-    if(roomName){
-      // socket.emit("join-room", roomName);
+    if (roomName) {
       router.push(`/Chatroom?user=${user}&room=${roomName}`);
     }
-    
-    
   }
-  // socket.on("history", (messageshistory) => {
-  //   console.log("hiiii");
-  //   // setMessages(messageshistory); // Update messages state with chat history
-  // });
-
   return (
     <>
       <div className="  m-[5px] mt-2">
@@ -53,5 +44,4 @@ function Joinroom() {
     </>
   );
 }
-
 export default Joinroom;

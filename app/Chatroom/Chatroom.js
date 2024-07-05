@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import socket from "../components/connect";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { getRandomColor } from "../utils/colors";
 
 function Chatroom(data) {
   const [mesuser, setMesuser] = useState([]);
@@ -15,6 +16,7 @@ function Chatroom(data) {
   const newroom = searchParams.get("room");
   const [room, setRoom] = useState(newroom);
   const [count, setCount] = useState(0);
+  const [backgroundcolor, setbackgroundcolor] = useState("#000000");
   let x;
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +28,7 @@ function Chatroom(data) {
   };
 
   useEffect(() => {
+    setbackgroundcolor(getRandomColor());
     x = socket.id;
     setSocketID(socket.id);
     socket.on("connect", () => {
@@ -35,15 +38,20 @@ function Chatroom(data) {
     socket.emit("join-room", newroom);
     socket.on("history", (messageshistory) => {
       let mes = [];
-      for (let i = 0; i < messageshistory.length - 1; i++) {
-        mes.push(messageshistory[i]);
+      for (let i = 0; i < messageshistory.length ; i++) {
+        //console.log("messagehistoryroom", messageshistory[i].nmessages,messageshistory[i].myroom, room);
+        if(messageshistory[i].myroom==room){
+          mes.push({
+            nmessages: messageshistory[i].nmessages,
+            ruser: messageshistory[i].ruser
+          });
+        }
+        
       }
-      setMesuser(messageshistory);
-      console.log("MesUser", mesuser);
+      setMesuser(mes);
+      console.log("MesUser", mesuser ,mes);
     });
-    socket.on("welcome", (s) => {
-      //console.log(s);
-    });
+    socket.on("welcome", (s) => {});
   }, []);
 
   useEffect(() => {
@@ -66,7 +74,7 @@ function Chatroom(data) {
             <div className="flex flex-col gap-3 p-2 ">
               {mesuser.map((msg, index) =>
                 msg.ruser == user ? (
-                  <div className="bg-primary flex flex-col self-end max-w-xs  border-primary rounded-2xl">
+                  <div className="bg-primary flex flex-col self-end max-w-xs border-[1px] border-black rounded-[25px]">
                     {/* <div className="bg-secondary pl-2 pr-3 py-1 rounded-2xl shadow-md text-wrap word h-auto text-white "> */}
                     <p className="text-wrap m-1 p-1  word">{msg.nmessages}</p>
                     {/* </div> */}
@@ -74,9 +82,11 @@ function Chatroom(data) {
                 ) : (
                   <div
                     key={index}
-                    className="bg-secondary flex flex-col  max-w-xs  border-white rounded-2xl w-fit "
+                    className="bg-secondary flex flex-col  max-w-xs border-[1px] border-text rounded-[25px] w-fit "
                   >
-                    <span className={`pt-1 pl-1 pr-1 m-0.5 text-sm font-bold `}>
+                    <span
+                      className={`pt-1 pl-1 pr-1 m-0.5 text-sm font-bold text-${getRandomColor} `}
+                    >
                       {msg.ruser} :
                     </span>
                     <span className="m-0.5 bg-secondary pl-1 pr-1 pb-1 text-black rounded-2xl text-wrap word overflow-x-auto ">
